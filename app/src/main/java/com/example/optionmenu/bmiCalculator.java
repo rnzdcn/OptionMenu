@@ -4,16 +4,15 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 
@@ -21,7 +20,7 @@ public class bmiCalculator extends AppCompatActivity {
 
     EditText heightInches, heightFeet, weight;
     TextView answer;
-    Button calculate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,33 +31,39 @@ public class bmiCalculator extends AppCompatActivity {
         weight = findViewById(R.id.weightTF);
         answer = findViewById(R.id.ouputTV);
 
-        calculate = findViewById(R.id.calculateBtn);
-        calculate.setOnClickListener(new View.OnClickListener() {
+        TextWatcher textWatcher = new TextWatcher() {
             @Override
-            public void onClick(View view) {
-                calculateBMI();
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
             }
-        });
 
-    }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String heightInchesStr = heightInches.getText().toString();
+                String heightFeetStr = heightFeet.getText().toString();
+                String weightStr = weight.getText().toString();
 
-    private void calculateBMI(){
-        String heightInchesStr = heightInches.getText().toString();
-        String heightFeetStr = heightFeet.getText().toString();
-        String weightStr = weight.getText().toString();
+                if (heightInchesStr != null && !"".equals(heightInchesStr) && heightFeetStr != null && !"".equals(heightFeetStr)
+                        && weightStr != null && !"".equals(weightStr)){
+                    float heightInchesValue = Float.parseFloat(heightInchesStr) ;
+                    float heightFeetValue = Float.parseFloat(heightFeetStr);
+                    float weightValue = Float.parseFloat(weightStr);
+                    float totalHeightInches = (heightFeetValue * 12) + heightInchesValue;
+                    float bmi = (float) (weightValue / Math.pow(totalHeightInches, 2) * 703);
+                    DecimalFormat df = new DecimalFormat("0.0");
+                    displayBMI(Float.parseFloat(df.format(bmi)));
+                }
+            }
 
-        if (heightInchesStr != null && !"".equals(heightInchesStr) && heightFeetStr != null && !"".equals(heightFeetStr)
-            && weightStr != null && !"".equals(weightStr)){
-                float heightInchesValue = Float.parseFloat(heightInchesStr) ;
-                float heightFeetValue = Float.parseFloat(heightFeetStr);
-                float weightValue = Float.parseFloat(weightStr);
+            @Override
+            public void afterTextChanged(Editable editable) {
 
-                float totalHeightInches = (heightFeetValue * 12) + heightInchesValue;
+            }
+        };
+        heightInches.addTextChangedListener(textWatcher);
+        heightFeet.addTextChangedListener(textWatcher);
+        weight.addTextChangedListener(textWatcher);
 
-                float bmi = (float) (weightValue / Math.pow(totalHeightInches, 2) * 703);
-                DecimalFormat df = new DecimalFormat("0.0");
-                displayBMI(Float.parseFloat(df.format(bmi)));
-        }
     }
 
     private void displayBMI(float bmi){
@@ -117,7 +122,6 @@ public class bmiCalculator extends AppCompatActivity {
         Intent calc = new Intent(bmiCalculator.this, bmiCalculator.class);
         startActivity(calc);
     }
-
     public void speedConverter(){
         Intent convert = new Intent(bmiCalculator.this, speedConverter.class);
         startActivity(convert);
