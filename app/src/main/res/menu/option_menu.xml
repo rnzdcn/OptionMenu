@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/om_calculator"
+        android:title="BMI Calculator"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/om_converter"
+        android:title="Speed Converter"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/om_exit"
+        android:title="Exit"
+        app:showAsAction="never" />
+
+</menu>
