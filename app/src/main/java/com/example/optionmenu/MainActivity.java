@@ -29,9 +29,11 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.om_calculator:
                 Toast.makeText(this, "BMI Calculator", Toast.LENGTH_SHORT).show();
+                bmiCalculator();
                 return true;
             case R.id.om_converter:
                 Toast.makeText(this, "Speed Converter", Toast.LENGTH_SHORT).show();
+                speedConverter();
                 return true;
             case R.id.om_exit:
                 finishAffinity();
@@ -41,4 +43,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+    public void bmiCalculator(){
+        Intent calc = new Intent(MainActivity.this, bmiCalculator.class);
+        startActivity(calc);
+    }
+
+    public void speedConverter(){
+        Intent convert = new Intent(MainActivity.this, speedConverter.class);
+        startActivity(convert);
+    }
+
+
 }

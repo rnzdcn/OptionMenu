@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Decena/AndroidStudioProjects/OptionMenu/app/src/main/res/layout/activity_bmi_calculator.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Decena/AndroidStudioProjects/OptionMenu/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/Decena/AndroidStudioProjects/OptionMenu/app/src/main/res/layout/activity_speed_converter.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Decena/AndroidStudioProjects/OptionMenu/app/src/main/res/menu/option_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
