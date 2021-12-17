@@ -1,20 +1,56 @@
 package com.example.optionmenu;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
 public class speedConverter extends AppCompatActivity {
+    int position;
+    AutoCompleteTextView autoCompleteTextView;
+    String []option = {"mph to kph" , "kph to mph"};
+    ArrayAdapter<String> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speed_converter);
+
+        autoCompleteTextView = findViewById(R.id.items);
+
+
+        arrayAdapter = new ArrayAdapter<String>(this, R.layout.option_item, option);
+//        autoCompleteTextView.setText(arrayAdapter.getItem(0).toString(), false);
+
+        autoCompleteTextView.setAdapter(arrayAdapter);
+
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                switch (position)
+                {
+                    case 0: // first one of the list
+                       Intent intent = new Intent(speedConverter.this, bmiCalculator.class);
+                        startActivity(intent);
+                        break;
+                    case 1: // second one of the list.
+                        Intent c = new Intent(speedConverter.this, MainActivity.class);
+                        startActivity(c);
+                        break;
+                    // and so on...
+                }
+            }
+        });
+
     }
 
     @Override
