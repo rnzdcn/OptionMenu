@@ -40,6 +40,7 @@
         android:layout_marginTop="50dp"
         android:ems="10"
         android:inputType="number"
+        android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -54,35 +55,21 @@
         app:layout_constraintStart_toEndOf="@+id/inputTF" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:id="@+id/resultTV"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Result"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/unitTV"
+        android:layout_marginEnd="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintEnd_toStartOf="@+id/answerUnit"
         app:layout_constraintStart_toStartOf="@+id/inputTF"
         app:layout_constraintTop_toBottomOf="@+id/inputTF" />
-
-    <TextView
-        android:id="@+id/resultTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/answerUnit"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/answerUnit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="TextView"
         app:layout_constraintBaseline_toBaselineOf="@+id/resultTV"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/resultTV" />
+        app:layout_constraintEnd_toEndOf="@+id/unitTV" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

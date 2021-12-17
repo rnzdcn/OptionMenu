@@ -45,7 +45,7 @@ public class bmiCalculator extends AppCompatActivity {
 
                 if (heightInchesStr != null && !"".equals(heightInchesStr) && heightFeetStr != null && !"".equals(heightFeetStr)
                         && weightStr != null && !"".equals(weightStr)){
-                    float heightInchesValue = Float.parseFloat(heightInchesStr) ;
+                    float heightInchesValue = Float.parseFloat(heightInchesStr);
                     float heightFeetValue = Float.parseFloat(heightFeetStr);
                     float weightValue = Float.parseFloat(weightStr);
                     float totalHeightInches = (heightFeetValue * 12) + heightInchesValue;

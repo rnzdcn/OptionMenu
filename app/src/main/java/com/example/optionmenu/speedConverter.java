@@ -1,9 +1,13 @@
 package com.example.optionmenu;
 
 import android.content.Intent;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,45 +15,81 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 public class speedConverter extends AppCompatActivity {
-    int position;
     AutoCompleteTextView autoCompleteTextView;
-    String []option = {"mph to kph" , "kph to mph"};
+    String[] option = {"mph to kph", "kph to mph"};
     ArrayAdapter<String> arrayAdapter;
+    EditText input;
+    TextView unit, answerUnit, result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speed_converter);
 
+        input = findViewById(R.id.inputTF);
+        unit = findViewById(R.id.unitTV);
+        answerUnit = findViewById(R.id.answerUnit);
+        result = findViewById(R.id.resultTV);
+
         autoCompleteTextView = findViewById(R.id.items);
 
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String userInput = input.getText().toString();
+                if (userInput != null && !"".equals(userInput)) {
+                    float userInputValue = Float.parseFloat(userInput);
+                    float formula = (float) (userInputValue * 1.609344);
+                    DecimalFormat df = new DecimalFormat("0.0");
+                    result.setText(df.format(formula));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        };
+        input.addTextChangedListener(textWatcher);
 
         arrayAdapter = new ArrayAdapter<String>(this, R.layout.option_item, option);
-//        autoCompleteTextView.setText(arrayAdapter.getItem(0).toString(), false);
 
         autoCompleteTextView.setAdapter(arrayAdapter);
 
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                switch (position)
-                {
-                    case 0: // first one of the list
-                       Intent intent = new Intent(speedConverter.this, bmiCalculator.class);
-                        startActivity(intent);
+                String unit1 = "mph" , unit2 = "kph", answerUnit1="kph", answerUnit2="mph";
+                switch (i) {
+                    case 0:
+                        unit.setText(unit1);
+                        answerUnit.setText(answerUnit1);
                         break;
-                    case 1: // second one of the list.
-                        Intent c = new Intent(speedConverter.this, MainActivity.class);
-                        startActivity(c);
+                    case 1:
+                        input.setText("");
+                        result.setText("");
+                        unit.setText(unit2);
+                        answerUnit.setText(answerUnit2);
                         break;
-                    // and so on...
                 }
             }
         });
+
+
+
 
     }
 
@@ -62,7 +102,7 @@ public class speedConverter extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.om_calculator:
                 Toast.makeText(this, "BMI Calculator", Toast.LENGTH_SHORT).show();
                 bmiCalculator();
@@ -79,12 +119,13 @@ public class speedConverter extends AppCompatActivity {
         }
 
     }
-    public void bmiCalculator(){
+
+    public void bmiCalculator() {
         Intent calc = new Intent(speedConverter.this, bmiCalculator.class);
         startActivity(calc);
     }
 
-    public void speedConverter(){
+    public void speedConverter() {
         Intent convert = new Intent(speedConverter.this, speedConverter.class);
         startActivity(convert);
     }
