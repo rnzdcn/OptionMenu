@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,8 +38,6 @@ public class speedConverter extends AppCompatActivity {
         result = findViewById(R.id.resultTV);
 
         autoCompleteTextView = findViewById(R.id.items);
-
-
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override
