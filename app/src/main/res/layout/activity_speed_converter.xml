@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/speed_converter_bg"
     tools:context=".speedConverter">
 
 
@@ -15,9 +16,9 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="@+id/textView10"
+        app:layout_constraintStart_toStartOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView10">
 
 
         <AutoCompleteTextView
@@ -26,32 +27,42 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:enabled="false"
+            android:fontFamily="@font/poppins"
             android:inputType="none"
             android:text="Select"
-            android:textColor="#000" />
+            android:textColor="#F7F7F7"
+            android:background="#99000000"
+            android:textSize="16sp" />
 
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <EditText
         android:id="@+id/inputTF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
         android:layout_marginTop="50dp"
+        android:background="#99000000"
         android:ems="10"
+        android:fontFamily="@font/plight"
         android:inputType="number"
-        android:textAlignment="textEnd"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+        android:textAlignment="center"
+        android:textColor="#F7F7F7"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView11"
+        app:layout_constraintStart_toStartOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/unitTV"
-        android:layout_width="0dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
+        android:fontFamily="@font/plight"
+        android:textColor="#F7F7F7"
+        android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/inputTF"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
         app:layout_constraintStart_toEndOf="@+id/inputTF" />
 
     <TextView
@@ -59,9 +70,41 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:fontFamily="@font/poppins"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/unitTV"
-        app:layout_constraintStart_toStartOf="@+id/inputTF"
+        android:textColor="#F7F7F7"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/inputTF" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:textColor="#F7F7F7"
+        android:fontFamily="@font/poppins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Speed Converter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:textStyle="italic"
+        android:textColor="#F7F7F7"
+        android:fontFamily="@font/plight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Please input a number"
+        app:layout_constraintBottom_toTopOf="@+id/inputTF"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
